@@ -37,7 +37,7 @@ let earthquake = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_
   //   color:"blue",
   //   fillColor: "purple",
   //   weight: 1
-}
+
 
 // Grabbing our GeoJSON data.
 d3.json(earthquake).then(function(data) {
