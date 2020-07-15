@@ -15,9 +15,25 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 	accessToken: API_KEY
 });
 
+// We create the light view tile layer that will be the third option for our map.
+let lightView = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+	maxZoom: 18,
+	accessToken: API_KEY
+});
+
+// We create the dark view tile layer that will be the fourth option for our map.
+let darkView = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+	maxZoom: 18,
+	accessToken: API_KEY
+});
+
 let baseMaps = {
   "Streets": streets,
-  "Satellite": satelliteStreets
+  "Satellite": satelliteStreets,
+  "Black Scale":darkView,
+  "Grey Scale":lightView
 };
 
 // Create the map object with center, zoom level and default layer.
@@ -37,6 +53,7 @@ let earthquake = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_
   //   color:"blue",
   //   fillColor: "purple",
   //   weight: 1
+
 
 // Grabbing our GeoJSON data.
 d3.json(earthquake).then(function(data) {
