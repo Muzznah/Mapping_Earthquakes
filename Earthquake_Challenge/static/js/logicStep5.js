@@ -1,34 +1,37 @@
 // Add console.log to check to see if our code is working.
 console.log("working");
 
-// We create the tile layer that will be the background of our map.
+/*________________________________Base Layer Options #4__________________________________*/
+
+//#1- Create the tile layer that will be the default background of our map.
 let streets = L.tileLayer(' https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
 	maxZoom: 18,
 	accessToken: API_KEY
 });
 
-// We create the dark view tile layer that will be an option for our map.
+//#2- Create the dark view tile layer that will be the second option for our map.
 let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
 	maxZoom: 18,
 	accessToken: API_KEY
 });
 
-// We create the light view tile layer that will be the third option for our map.
+//#3- Create the light view tile layer that will be the third option for our map.
 let lightView = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
 	maxZoom: 18,
 	accessToken: API_KEY
 });
 
-// We create the dark view tile layer that will be the fourth option for our map.
+//#4- Create the dark view tile layer that will be the final and fourth option for our map.
 let darkView = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
 	maxZoom: 18,
 	accessToken: API_KEY
 });
 
+// Create a baseMaps variable to hold the base layers.
 let baseMaps = {
   "Streets": streets,
   "Satellite": satelliteStreets,
@@ -41,6 +44,8 @@ let map = L.map('mapid', {
 	zoom: 3,
 	layers: [streets]
 })
+
+/*________________________________Overlay Layer Options #2__________________________________*/
 
 // Create the tectonic layer for our map.
 let tectonics= new L.layerGroup();
@@ -55,9 +60,13 @@ let overlays = {
   Tectonics: tectonics
 };
 
+/*________________________________Layer Control______________________________________________*/
+
 // Then we add a control to the map that will allow the user to change
 // which layers are visible.
 L.control.layers(baseMaps, overlays).addTo(map);
+
+/*________________________________Accessing Data from APIs__________________________________*/
 
 // Accessing the Tectonic plate boundaries GeoJSON URL.
 let tectonicplates="https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
@@ -149,7 +158,7 @@ style: styleInfo,
   layer.bindPopup(`Magnitude: ${feature.properties.mag}<br>Location: ${feature.properties.place}`);
 }
       }).addTo(earthquakes);
-    // Then we add esrthquakes lauer to our map 
+    // Then we add earthquakes layer to our map 
     earthquakes.addTo(map);
 
     // Create a legend control object.
