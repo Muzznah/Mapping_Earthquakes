@@ -1,6 +1,9 @@
 # Mapping_Earthquakes
 ## Purpose
 The purpose of this project is to visually show the differences between the magnitudes of earthquakes all over the world for the last seven days.
+![](https://github.com/Muzznah/Mapping_Earthquakes/blob/master/Earthquake_Challenge/images/Satellite.png)
+
+![](https://github.com/Muzznah/Mapping_Earthquakes/blob/master/Earthquake_Challenge/images/Street.png)
 ## Resources:
 <b>Software:</b></br>
 - JavaScript, D3.js library,Leaflet.js 1.6.0, HTML5, and CSS3
